@@ -53,3 +53,21 @@ class BasicAuth(Auth):
             res = decoded_cred.split(":", 1)
             return (res[0], res[1])
         return (None, None)
+
+    def user_object_from_credentials(
+            self, user_email: str, user_pwd: str) -> TypeVar('User'):
+        """method that returns User instance based on email and password"""
+        if user_email is None or not isinstance(user_email, str):
+            return None
+        if user_pwd is None or not isinstance(user_pwd, str):
+            return None
+        try:
+            users = User.search({"email": user_email})
+            if not users or users == []:
+                return None
+            for u in users:
+                if u.is_valid_password(user_pwd):
+                    return u
+            return None
+        except Exception:
+            return None
