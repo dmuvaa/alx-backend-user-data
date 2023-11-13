@@ -24,7 +24,6 @@ class BasicAuth(Auth):
         else:
             return head_array[1]
 
-
     def decode_base64_authorization_header(
             self, base64_authorization_header: str) -> str:
         """method that returns the decoded value of a string"""
