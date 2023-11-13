@@ -11,7 +11,8 @@ from typing import TypeVar
 
 class BasicAuth(Auth):
     """class that inherits from Auth"""
-    def extract_base64_authorization_header(self, authorization_header: str) -> str:
+    def extract_base64_authorization_header(
+            self, authorization_header: str) -> str:
         """class that returns base64 of the Authorization Header"""
         if authorization_header is None:
             return None
