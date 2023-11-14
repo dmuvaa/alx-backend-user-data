@@ -35,7 +35,7 @@ def before_request_handler():
     if auth is None:
         return
 
-    paths = ['/api/v1/status',
+    paths = ['/api/v1/status', '/api/v1/status/'
              '/api/v1/unauthorized/', '/api/v1/forbidden/']
 
     if auth.require_auth(request.path, paths):
