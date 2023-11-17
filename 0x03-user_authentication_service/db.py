@@ -45,7 +45,7 @@ class DB:
             self._session.rollback()
             new_user = None
         return new_user
-    
+
     def find_user_by(self, **kwargs) -> User:
         """method that uses filters to return Users"""
         try:
