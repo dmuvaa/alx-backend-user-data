@@ -4,8 +4,11 @@
 """
 
 from sqlalchemy import create_engine
+from sqlalchemy.exc import InvalidRequestError
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm.exc import NoResultFound
+
 from sqlalchemy.orm.session import Session
 
 from user import Base, User
@@ -42,3 +45,15 @@ class DB:
             self._session.rollback()
             new_user = None
         return new_user
+    
+    def find_user_by(self, **kwargs) -> User:
+        """method that uses filters to return Users"""
+        try:
+            user = self._session.query(User).filter_by(**kwargs).first()
+            if user is None:
+                raise NoResultFound("Found no Result")
+            return user
+        except NoResultFound:
+            raise NoResultFound("Found no Result")
+        except InvalidRequestError:
+            raise InvalidRequestError("request invalid")
