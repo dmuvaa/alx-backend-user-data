@@ -6,9 +6,8 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
+
 @app.route('/', methods=['GET'], strict_slashes=False)
-
-
 def basic_app():
     """Method that returns a JSON payload of the form"""
     return jsonify({"message": "Bienvenue"})
