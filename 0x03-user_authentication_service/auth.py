@@ -6,6 +6,8 @@ from db import DB
 from sqlalchemy.orm.exc import NoResultFound
 from user import User
 import bcrypt
+import uuid
+
 
 """Create a Method"""
 
@@ -17,6 +19,11 @@ def _hash_password(password: str) -> str:
     salt = bcrypt.gensalt()
     hashed_password = bcrypt.hashpw(bytes, salt)
     return hashed_password
+
+
+def _generate_uuid():
+    """Method that returns a string representation of a new UUID"""
+    return str(uuid.uuid4())
 
 
 class Auth:
