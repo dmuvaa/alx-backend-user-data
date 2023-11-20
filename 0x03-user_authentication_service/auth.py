@@ -7,7 +7,7 @@ import bcrypt
 """Create a Method"""
 
 
-def _hash_password(password: str):
+def _hash_password(password: str) -> str:
     """Method that takes password string arguments and returns bytes"""
     bytes = password.encode('utf-8')
 
